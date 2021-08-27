@@ -6,11 +6,20 @@ export default createStore({
     movies: [],
     watchList: [],
     page: 1,
+    openCardID: null,
   },
   mutations: {
     addMovies(state, payload) {
       if (payload.list.length) {
         state.movies = payload.list;
+        this.commit("setOpenCardID", { id: payload.list[0].id });
+      }
+    },
+    setOpenCardID(state, payload) {
+      if (payload.id && payload.id !== state.openCardID) {
+        state.openCardID = payload.id;
+      } else {
+        state.openCardID = null;
       }
     },
   },

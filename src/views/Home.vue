@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="movies.length">
+    <div v-if="movies.length" class="d-flex flex-wrap cardsContainer">
       <movie-card v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
 
@@ -29,3 +29,10 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.cardsContainer {
+  width: 710px;
+  margin: auto;
+}
+</style>
