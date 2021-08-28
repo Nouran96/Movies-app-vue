@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <div v-if="movies.length" class="d-flex flex-wrap cardsContainer">
+    <div
+      v-if="movies.length"
+      class="d-flex flex-wrap justify-content-center cardsContainer"
+    >
       <movie-card v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
 
@@ -32,7 +35,7 @@ export default {
 
 <style scoped lang="scss">
 .cardsContainer {
-  width: 710px;
+  // max-width: 710px;
   margin: auto;
 }
 </style>
