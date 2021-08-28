@@ -40,14 +40,28 @@
         </div>
       </div>
 
-      <div>
+      <div v-if="component !== 'watchlist'">
         <va-button
+          v-if="!inWatchList"
           class="w-auto py-2"
           color="#42b983"
           outline
           text-color="#42b983"
           icon="add"
+          @click="addToWatchList"
           >Add to watch list</va-button
+        >
+      </div>
+
+      <div v-else>
+        <va-button
+          class="w-auto py-2"
+          color="#42b983"
+          outline
+          text-color="#42b983"
+          icon="remove"
+          @click="removeFromWatchList"
+          >Remove movie</va-button
         >
       </div>
     </div>
@@ -59,7 +73,7 @@ import moment from "moment";
 
 export default {
   name: "MovieCard",
-  props: ["movie"],
+  props: ["movie", "component"],
   computed: {
     isOpen() {
       return this.$store.state.openCardID === this.movie?.id;
@@ -72,13 +86,26 @@ export default {
     },
     genres() {
       return this.movie.genre_ids.map((id) =>
-        this.$store.state.genres.find((genre) => genre.id === id)
+        this.$store.state.genres.length
+          ? this.$store.state.genres.find((genre) => genre.id === id)
+          : {}
+      );
+    },
+    inWatchList() {
+      return this.$store.state.watchList.find(
+        (movie) => movie.id === this.movie.id
       );
     },
   },
   methods: {
     showCard() {
       this.$store.commit("setOpenCardID", { id: this.movie.id });
+    },
+    addToWatchList() {
+      this.$store.commit("addToWatchList", { movie: this.movie });
+    },
+    removeFromWatchList() {
+      this.$store.commit("removeFromWatchList", { movie: this.movie });
     },
   },
 };

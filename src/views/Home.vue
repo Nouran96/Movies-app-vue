@@ -2,7 +2,7 @@
   <div class="home">
     <div
       v-if="movies.length"
-      class="d-flex flex-wrap justify-content-center cardsContainer"
+      class="d-flex flex-wrap justify-content-center m-auto"
     >
       <movie-card v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
@@ -28,14 +28,9 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getMovies");
+    if (!this.movies.length) {
+      this.$store.dispatch("getMovies");
+    }
   },
 };
 </script>
-
-<style scoped lang="scss">
-.cardsContainer {
-  // max-width: 710px;
-  margin: auto;
-}
-</style>
