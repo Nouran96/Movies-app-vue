@@ -3,7 +3,9 @@
     <router-link to="/" class="pe-3">Movies</router-link>
     <router-link to="/watch-list" class="pe-3">Watch list</router-link>
   </div>
-  <router-view />
+  <div id="content">
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
@@ -38,6 +40,13 @@
         left: 0;
       }
     }
+  }
+}
+
+#content {
+  // Changed in deployment
+  .va-button--normal .va-button__left-icon {
+    font-size: 24px !important;
   }
 }
 </style>

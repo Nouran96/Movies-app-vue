@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import NotFoundComponent from "../components/NotFoundComponent.vue";
 
 const routes = [
   {
@@ -16,10 +17,15 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "watchList" */ "../views/WatchList.vue"),
   },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFoundComponent,
+    name: "NotFound",
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
