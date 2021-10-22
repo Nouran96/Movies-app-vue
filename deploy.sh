@@ -10,5 +10,5 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:nouran96/Movies-app-vue.git main:gh-pages
+git push -f git@github.com:Nouran96/Movies-app-vue.git main:gh-pages
 cd -
